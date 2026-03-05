@@ -1,0 +1,9 @@
+/* Leaflet CSS is dynamically injected via index.ts */
+
+.osm-map-container {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    /* Provide a default minimum height */
+    position: relative;
+}

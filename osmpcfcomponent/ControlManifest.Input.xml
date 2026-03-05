@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="OsmNamespace" constructor="osmpcfcomponent" version="0.0.14" display-name-key="osmpcfcomponent" description-key="osmpcfcomponent description" control-type="standard" >
+    <!--external-service-usage node declares whether this 3rd party PCF control is using external service or not, if yes, this control will be considered as premium and please also add the external domain it is using.
+    If it is not using any external service, please set the enabled="false" and DO NOT add any domain below. The "enabled" will be false by default.
+    Example1:
+      <external-service-usage enabled="true">
+        <domain>www.Microsoft.com</domain>
+      </external-service-usage>
+    Example2:
+      <external-service-usage enabled="false">
+      </external-service-usage>
+    -->
+    <external-service-usage enabled="false">
+      <!--UNCOMMENT TO ADD EXTERNAL DOMAINS
+      <domain></domain>
+      <domain></domain>
+      -->
+    </external-service-usage>
+    <data-set name="mapDataset" display-name-key="Map_Dataset_Display_Key">
+      <property-set name="Latitude" display-name-key="Latitude" description-key="Latitude of the pin" of-type="FP" usage="bound" required="true" />
+      <property-set name="Longitude" display-name-key="Longitude" description-key="Longitude of the pin" of-type="FP" usage="bound" required="true" />
+      <property-set name="PinLabel" display-name-key="Pin Label" description-key="Label for the pin" of-type="SingleLine.Text" usage="bound" required="true" />
+      <property-set name="PinColor" display-name-key="Pin Color" description-key="CSS color hex or name for the pin" of-type="SingleLine.Text" usage="bound" required="false" />
+      <property-set name="PinID" display-name-key="Pin ID" description-key="Unique ID for the pin to be returned on click" of-type="SingleLine.Text" usage="bound" required="false" />
+    </data-set>
+    <property name="TileServerURL" display-name-key="Tile Server URL" description-key="Commercial tile URL. Example format: https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=YOUR_API_KEY" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SelectedPinID" display-name-key="Selected Pin ID" description-key="ID of the selected pin" of-type="SingleLine.Text" usage="output" required="false" />
+    <property name="SelectedLabel" display-name-key="Selected Label" description-key="Label of the selected pin" of-type="SingleLine.Text" usage="output" required="false" />
+    <property name="SelectedLatitude" display-name-key="Selected Latitude" description-key="Latitude of the selected pin" of-type="FP" usage="output" required="false" />
+    <property name="SelectedLongitude" display-name-key="Selected Longitude" description-key="Longitude of the selected pin" of-type="FP" usage="output" required="false" />
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/leaflet.css" order="1" />
+      <css path="css/osmpcfcomponent.css" order="2" />
+    </resources>
+    <!-- UNCOMMENT TO ENABLE THE SPECIFIED API
+    <feature-usage>
+      <uses-feature name="Device.captureAudio" required="true" />
+      <uses-feature name="Device.captureImage" required="true" />
+      <uses-feature name="Device.captureVideo" required="true" />
+      <uses-feature name="Device.getBarcodeValue" required="true" />
+      <uses-feature name="Device.getCurrentPosition" required="true" />
+      <uses-feature name="Device.pickFile" required="true" />
+      <uses-feature name="Utility" required="true" />
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+    -->
+  </control>
+</manifest>
