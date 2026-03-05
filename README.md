@@ -9,7 +9,7 @@ A fully responsive, open-source PowerApps Component Framework (PCF) control that
 - **Custom Map Pins:** Bound dataset records automatically render as map pins.
 - **Dynamic Pin Colors:** Define custom hex/CSS colors per row to categorize your map pins.
 - **JSON Table Popups:** Click a pin to reveal an auto-formatted HTML table parsed seamlessly from any JSON string.
-- **PowerApps Context Aware:** Natively triggers the Canvas `OnChange` event (via `dataset.setSelectedRecordIds`) so you can access `Self.Selected` context natively.
+- **PowerApps Context Aware:** Dataset selection is updated natively (via `dataset.setSelectedRecordIds`) for compatibility, but it is highly recommended to use the component's `OnChange` property + `SelectedPinID` output instead of relying on Canvas `OnSelect`.
 - **CSP Resilient:** Leaflet CSS is bundled directly into the component, and all map markers run dynamically via HTML `divIcon`, ensuring restrictive corporate Content Security Policies do not block external unpkg map assets.
 
 ## Installation / Import
@@ -55,14 +55,15 @@ ClearCollect(
     - **Pin ID:** `MyPinID` 
 
 ### Reading the Selected Pin
-Do not use `OnSelect`. PCF datasets rely on internal state triggers.
+Use **`OnChange`** + outputs (`SelectedPinID`, etc.). Dataset selection is set for compatibility, but do not rely on **`OnSelect`** as behavior varies significantly by host.
+
 Put your logic in the component's **`OnChange`** property:
 
 ```powerapps-dot
 UpdateContext({ activeHospitalId: osmpcfcomponent.SelectedPinID });
 ```
 
-*(Note: In newer PowerApps versions, you can also natively use `Self.Selected.MyPinID` in some contexts).*
+*(Note: In newer PowerApps versions, you can also natively use `Self.Selected.MyPinID` in some contexts, but `OnChange` is universally supported).*
 
 ## Developer Build Instructions
 
